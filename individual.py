@@ -56,7 +56,7 @@ if __name__ == '__main__':
             print(line)
         elif command.startswith('select '):
             # Получить текущую дату.
-            selzod = zod.selected()
+            selzod = zod()
             # Разбить команду на части для выделения знака Зодиака.
             parts = command.split(' ', maxsplit=1)
             # Получить требуемый стаж.
@@ -65,9 +65,8 @@ if __name__ == '__main__':
             count = 0
             # Проверить сведения людей из списка.
             for people in peoples:
-                if selzod - people.get('zod', selzod) >= selzod:
-                    count += 1
-                    print('{:>4}: {}'.format(count, people.get('name', '')))
+                if selzod - people.get('zod', selzod) == selzod:
+                    print('{:>4}: {}'.format(selzod, people.get('name', '')))
             # Если счетчик равен 0, то люди не найдены.
             if count == 0:
                 print("Люди с данным знаком Зодиака не найдены.")
