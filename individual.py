@@ -54,22 +54,25 @@ if __name__ == '__main__':
                 print('| {:>4} | {:<30} | {:<20} | {:>15} |'.format(idx,
                 people.get('name', ''), people.get('zod', ''), people.get('birth', 0)))
             print(line)
+
+
         elif command.startswith('select '):
-            # Получить текущую дату.
-            selzod = zod()
-            # Разбить команду на части для выделения знака Зодиака.
-            parts = command.split(' ', maxsplit=1)
-            # Получить требуемый стаж.
-            selzod = int(parts[1])
-            # Инициализировать счетчик.
+            parts = command.split(' ', maxsplit=2)
+            sel = (parts[1])
             count = 0
-            # Проверить сведения людей из списка.
-            for people in peoples:
-                if selzod - people.get('zod', selzod) == selzod:
-                    print('{:>4}: {}'.format(selzod, people.get('name', '')))
-            # Если счетчик равен 0, то люди не найдены.
+            for peoples in peoples:
+                if peoples.get('name') == sel:
+                    count = "Дата рождения"
+                    print(
+                        '{:>4}: {}'.format(count, peoples.get('dr', ''))
+                    )
+                    print('Знак Зодиака:', peoples.get('zod', ''))
+                    print('Фамилия и имя:', peoples.get('name', ''))
+
+            # Если счетчик равен 0, то люди с искомым знаком Зодиака не найдены.
             if count == 0:
-                print("Люди с данным знаком Зодиака не найдены.")
+                print("Люди с данным знаком Зодиака не найден.")
+
         elif command == 'help':
             # Вывести справку о работе с программой.
             print("Список команд:\n")
