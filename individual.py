@@ -49,30 +49,20 @@ if __name__ == '__main__':
             "Знак Зодиака",
             "Дата рождения" ))
             print(line)
-            # Вывести данные о всех людях.
             for idx, people in enumerate(peoples, 1):
                 print('| {:>4} | {:<30} | {:<20} | {:>15} |'.format(idx,
                 people.get('name', ''), people.get('zod', ''), people.get('birth', 0)))
             print(line)
-
-
         elif command.startswith('select '):
-            parts = command.split(' ', maxsplit=2)
+            parts = command.split(' ', maxsplit=1)
             sel = (parts[1])
             count = 0
-            for peoples in peoples:
-                if peoples.get('name') == sel:
-                    count = "Дата рождения"
-                    print(
-                        '{:>4}: {}'.format(count, peoples.get('dr', ''))
-                    )
-                    print('Знак Зодиака:', peoples.get('zod', ''))
-                    print('Фамилия и имя:', peoples.get('name', ''))
-
-            # Если счетчик равен 0, то люди с искомым знаком Зодиака не найдены.
-            if count == 0:
-                print("Люди с данным знаком Зодиака не найден.")
-
+            for people in peoples:
+                if people.get('zod') == sel:
+                    count += 1
+                    print('{:>4}: {}'.format(count, people.get('name', '')))
+                    if count == 0:
+                       print("Люди с данным знаком Зодиака не найдены.")
         elif command == 'help':
             # Вывести справку о работе с программой.
             print("Список команд:\n")
